@@ -1,50 +1,26 @@
 #include <iostream>
-#include <getopt.h>
-
+#include <unistd.h>
+#include <cmath>
 using namespace std;
-
 int main(int argc, char *argv[])
 {
-
-	{ if (argc==1)
-    {
-        cout<<"КАЛЬКУЛЯТОР"<< endl<< "Чтобы выбрать действие, нужно ввести один из параметров:" << endl<< "-s — cложение всех введенных значений" << endl << "-m — вычетание первого значения из всех последующий введенных значений"<< endl << "Для того чтобы продолжить запустите программу еще раз с нужным параметром и введите значения через пробел"<< endl;
-    }        
-
-	int opt, i, result = 0, x, b ,t;
-	while ((opt = getopt (argc, argv, "m:s:")) != -1)
-        {
-            switch (opt)
-            {
-                case 's':
-        			for(i = 0; i<argc; i++)
-        			{
-            				cout<< i << ": "<< argv[i] << endl;
-        			}			
-        			for(i=2; i<argc; i++)
-        			{
-            			x = strtol(argv[i], NULL, 10);
-            			result=result + x;
-        			}
-        		cout<< "Результат: "<< result<<endl;
-               	break;
-               	
-               	case 'm':
-    				for(i = 0; i<argc; i++)
-   			 		{
-        				cout<< i << ": "<< argv[i] << endl;
-    				}	
-    				b = 0;
-    				for(i=2; i<argc; i++)
-    				{
-       					x = strtol(argv[i], NULL, 10);
-          				t = strtol(argv[2], NULL, 10);
-        				result=result + x;
-        				b=result - t*2;
-    				}
-    			cout<< "Результат: "<< b <<endl;
-                break;       
-            }
-        }
+if(argc == 1){
+    cout << "\nСправка\n"<< "Функции калькулятора\n" << endl << "./calculator - Для вызова справки" << endl << "./calculator -o первое число второе число - Для возведения первого числа в степень второго числа" << endl;
+    cout << "Примечани: если указать только первое число то е будет возведено в степень первого числа\n" << endl;
+    exit(0);
+}
+int nmbr = 3;
+int opt;
+while((opt = getopt(argc, argv, "a:")) != -1)
+{
+    string a = optarg;
+     if(a == "stepenE"){
+    cout<< exp(atoi(argv[nmbr])) <<endl;
     }
+     if(a == "stepenXY"){
+    cout<< pow(atoi(argv[3]),atoi(argv[4])) <<endl;
+    }
+    cout<<endl;
+}
+return 0;
 }
